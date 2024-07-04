@@ -57,7 +57,7 @@ ml-base-env:
   - py-kiwisolver
   - py-langcodes
   - py-lazy-loader
-  - py-librosa
+  #- py-librosa -> depends on py-numba -> py-llvmlite -> llvm14
   - py-lightning
   - py-lightning-utilities
   #- py-llvmlite -> does not compile since it relies on llvm14 which does not compile
@@ -174,7 +174,7 @@ ml-base-env:
   - py-tornado
   - py-tqdm +notebook
   - py-traitlets
-  - py-transformer-engine@1.6 +userbuffers
+  - py-transformer-engine@1.6.1 +userbuffers
   #- py-transformer-engine +userbuffers -> does not compile (yet), x86 intrinsics
   - py-transformers
   - treelite +python

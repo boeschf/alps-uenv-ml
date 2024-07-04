@@ -19,6 +19,7 @@ class PyTransformerEngine(PythonPackage):
 
     license("Apache-2.0")
 
+    version("1.6.1", commit="08e5e4b1be2e3eea40d4dabda0b62cd4d60d6fab", submodules=True)
     version("1.6", tag="v1.6", submodules=True) 
     version("1.4", tag="v1.4", submodules=True)
     version("main", branch="main", submodules=True)
