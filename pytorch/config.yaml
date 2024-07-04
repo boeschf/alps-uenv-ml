@@ -1,0 +1,8 @@
+name: pytorch
+spack:
+  repo: https://github.com/spack/spack.git
+  commit: 5262412c13f49266e4a45a3ef450934531b47592
+modules: false
+store: /user-environment
+description: Toolchain for Machine Learning, PyTorch and other development tools
+

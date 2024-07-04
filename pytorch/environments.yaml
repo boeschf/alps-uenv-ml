@@ -1,0 +1,186 @@
+ml-base-env:
+  compiler:
+      - toolchain: gcc
+        spec: gcc@12
+      - toolchain: llvm
+        spec: llvm@17
+  mpi:
+      spec: cray-mpich@8.1.29
+      gpu: cuda
+  unify: true
+  specs:
+  - cray-mpich
+  - aws-ofi-nccl@master
+  - xpmem
+  - cmake
+  - cuda@12.3
+  - fftw
+  - fmt
+  - hdf5 +direct-vfd
+  - nccl@2.21.5-1
+  - ninja
+  - gperftools
+  - openblas threads=openmp
+  #- armpl-gcc threads=openmp
+  - cudnn
+  - cutensor
+  - swig
+  - libaio
+  - python
+  - python-venv
+  - py-pip
+  ##- py-pip@23.1:%gcc
+  #- py-pip%gcc
+  #- py-cython%gcc
+  #- py-setuptools%gcc
+  #- py-setuptools-scm%gcc +toml
+  #- py-setuptools-rust%gcc
+  #- py-wheel%gcc
+  #- py-packaging%gcc
+  #- py-pathspec%gcc
+  #- py-pybind11%gcc
+  #- py-pluggy%gcc
+  ##- py-ninja@1.10.2%gcc
+  #- py-numpy%gcc
+  #- py-sympy%gcc
+  #- py-scipy%gcc
+  #- py-pytest%gcc
+  #- py-pytest-xdist%gcc
+  - py-torch@2.3.1 +distributed +fbgemm ~mkldnn +qnnpack +numa +cudnn +magma +nccl ~gloo +mpi ~onnx_ml +xnnpack +tensorpipe ~caffe2 +kineto +valgrind +custom-protobuf 
+  - py-torchvision +ffmpeg +nvjpeg +video_codec
+  - py-torchaudio
+  #- py-torch@2.3.1 +distributed +cuda +cudnn +magma +nccl +mpi +custom-protobuf +test +onnx_ml +xnnpack +tensorpipe
+  #- py-torchvision%gcc +ffmpeg +nvjpeg +video_codec
+  #- py-torchaudio%gcc
+  #- py-torchmetrics%gcc
+  ##- py-triton@main%gcc
+  ##- py-torch-nvidia-apex@master%gcc
+  ##- py-torch-nvidia-apex@master%gcc +fast_layer_norm +dist_adam
+  #- py-huggingface-hub%gcc
+  #- py-nvidia-dali%gcc
+  #- py-zarr%gcc
+  ##- py-onnx%gcc
+  #- py-nvtx%gcc
+  #- py-deepspeed%gcc
+  #- py-accelerate%gcc
+  #- py-datasets%gcc
+  #- py-tokenizers%gcc
+  #- sentencepiece%gcc ~with-TCMalloc
+  #- py-sentencepiece@0.1.99%gcc
+  #- py-transformers%gcc
+  #- py-einops%gcc
+  #- py-hatchling%gcc
+  #- arrow%gcc +parquet +snappy +zlib +zstd +brotli +compute 
+  #- py-pyarrow%gcc +dataset
+  #- py-nltk%gcc
+  #- py-arrow%gcc
+  #- py-flash-attn@2.4.2%gcc
+  ##- py-transformer-engine%gcc +userbuffers
+  #- py-tensorstore%gcc
+  #- py-xarray +parallel +io
+  #
+  #- py-dask@2023.4.1
+  #- py-bokeh@3.4.2
+  #- py-distributed@2023.4.1
+  - py-flash-attn
+  - py-frozenlist@1.3.1
+  - py-oauthlib +rsa +signals +signedtoken
+  - py-onnx
+  - py-opt-einsum
+  - py-optree
+  - py-packaging
+  - py-pandas
+  - py-pandocfilters
+  - py-parso
+  - py-partd
+  - py-pexpect
+  - py-pillow +freetype +jpeg2000 +lcms +tiff +webp
+  - py-platformdirs
+  - py-pluggy
+  - py-ply
+  - py-pooch
+  #- py-preshed -> murmurhash does not compile
+  - py-prettytable
+  - py-prometheus-client
+  - py-prompt-toolkit
+  - py-protobuf
+  - protobuf
+  - py-psutil
+  - py-ptyprocess
+  - py-pure-eval
+  - py-pyarrow +dataset ~orc +parquet
+  - arrow +brotli +compute ~gandiva +glog +hdfs +lz4 ~orc +parquet +python +snappy +zlib +zstd
+  - py-pyasn1
+  - py-pyasn1-modules
+  - py-pybind11
+  - py-pycocotools
+  - py-pycparser
+  - py-pydantic
+  - py-pygments
+  - py-pynvml
+  - py-pyparsing
+  - py-pytest
+  - py-pytest-xdist
+  - py-python-dateutil
+  - py-python-hostlist
+  #- py-triton@main%clang
+  #- py-triton%clang
+  - py-pytz
+  - py-pyyaml
+  - py-pyzmq
+  - py-regex
+  - py-requests +socks
+  - py-requests-oauthlib
+  - py-rich
+  #- py-rmm -> librmm does not compile
+  - py-rsa
+  - py-scikit-learn
+  - py-scipy
+  - py-send2trash
+  - py-six
+  - py-sortedcontainers
+  - py-soundfile
+  - py-soupsieve
+  - py-spacy-loggers
+  #- py-srsly -> does not compile
+  - py-stack-data
+  - py-sympy
+  - py-tabulate
+  - py-tblib
+  - py-tensorstore
+  - py-terminado
+  - py-texttable
+  #- py-thinc -> murmurhash does not compile
+  - py-threadpoolctl
+  - py-tinycss2
+  - py-tomli
+  - py-toolz
+  - py-tornado
+  - py-tqdm +notebook
+  - py-traitlets
+  #- py-transformer-engine +userbuffers -> does not compile (yet), x86 intrinsics
+  - treelite +python
+  - py-typer
+  - py-types-dataclasses
+  - py-typing-extensions
+  - py-tzdata
+  - py-urllib3 +socks +brotli
+  - py-wasabi
+  - py-wcwidth
+  - py-webencodings
+  - py-werkzeug
+  #- py-xarray +parallel +io -> py-dask -> py-bokeh (does not compile)
+  #- py-xgboost +dask +pandas +scikit-learn
+  #- xgboost +nccl -> does not compile
+  - py-yarl
+  - py-zarr
+  - py-zict
+  - py-zipp
+  variants:
+  - +mpi
+  - +cuda
+  - cuda_arch=90
+  views:
+    default:
+      link: all
+
