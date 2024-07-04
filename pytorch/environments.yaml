@@ -29,61 +29,67 @@ ml-base-env:
   - python
   - python-venv
   - py-pip
-  ##- py-pip@23.1:%gcc
-  #- py-pip%gcc
-  #- py-cython%gcc
+  - py-cython
   #- py-setuptools%gcc
   #- py-setuptools-scm%gcc +toml
   #- py-setuptools-rust%gcc
   #- py-wheel%gcc
-  #- py-packaging%gcc
-  #- py-pathspec%gcc
-  #- py-pybind11%gcc
-  #- py-pluggy%gcc
-  ##- py-ninja@1.10.2%gcc
-  #- py-numpy%gcc
-  #- py-sympy%gcc
-  #- py-scipy%gcc
-  #- py-pytest%gcc
-  #- py-pytest-xdist%gcc
-  - py-torch@2.3.1 +distributed +fbgemm ~mkldnn +qnnpack +numa +cudnn +magma +nccl ~gloo +mpi ~onnx_ml +xnnpack +tensorpipe ~caffe2 +kineto +valgrind +custom-protobuf 
-  - py-torchvision +ffmpeg +nvjpeg +video_codec
-  - py-torchaudio
-  #- py-torch@2.3.1 +distributed +cuda +cudnn +magma +nccl +mpi +custom-protobuf +test +onnx_ml +xnnpack +tensorpipe
-  #- py-torchvision%gcc +ffmpeg +nvjpeg +video_codec
-  #- py-torchaudio%gcc
-  #- py-torchmetrics%gcc
-  ##- py-triton@main%gcc
-  ##- py-torch-nvidia-apex@master%gcc
-  ##- py-torch-nvidia-apex@master%gcc +fast_layer_norm +dist_adam
-  #- py-huggingface-hub%gcc
-  #- py-nvidia-dali%gcc
-  #- py-zarr%gcc
-  ##- py-onnx%gcc
-  #- py-nvtx%gcc
-  #- py-deepspeed%gcc
-  #- py-accelerate%gcc
-  #- py-datasets%gcc
-  #- py-tokenizers%gcc
-  #- sentencepiece%gcc ~with-TCMalloc
-  #- py-sentencepiece@0.1.99%gcc
-  #- py-transformers%gcc
-  #- py-einops%gcc
-  #- py-hatchling%gcc
-  #- arrow%gcc +parquet +snappy +zlib +zstd +brotli +compute 
-  #- py-pyarrow%gcc +dataset
-  #- py-nltk%gcc
-  #- py-arrow%gcc
-  #- py-flash-attn@2.4.2%gcc
-  ##- py-transformer-engine%gcc +userbuffers
-  #- py-tensorstore%gcc
-  #- py-xarray +parallel +io
-  #
-  #- py-dask@2023.4.1
+  - py-accelerate
+  - py-arrow
   #- py-bokeh@3.4.2
+  #- py-dask@2023.4.1
+  - py-datasets
+  - py-deepspeed
   #- py-distributed@2023.4.1
+  - py-einops
+  - py-hatchling
+  - py-huggingface-hub +cli
   - py-flash-attn
   - py-frozenlist@1.3.1
+  - py-json5
+  - py-jsonschema
+  - py-jupyter-client
+  - py-jupyter-core
+  - py-jupyterlab
+  - py-jupyterlab-server
+  - py-jupyterlab-pygments
+  - py-jupytext
+  - py-kiwisolver
+  - py-langcodes
+  - py-lazy-loader
+  - py-librosa
+  - py-lightning
+  - py-lightning-utilities
+  #- py-llvmlite -> does not compile since it relies on llvm14 which does not compile
+  - py-locket
+  - py-looseversion
+  - py-markdown
+  - py-markdown-it-py
+  - py-markupsafe
+  - py-matplotlib ~animation ~latex ~movies
+  - py-matplotlib-inline
+  - py-mdit-py-plugins
+  - py-mdurl
+  - py-mistune
+  - py-mock
+  - py-mpmath
+  - py-msgpack
+  - py-multidict
+  #- py-murmurhash -> does not build
+  - py-nbclient
+  - py-nbconvert
+  - py-nbformat
+  - py-nest-asyncio
+  - py-networkx
+  #- py-ninja (can't concretize to single version)
+  - py-nltk
+  - py-notebook
+  #- py-numba -> depends on py-llvmlite which does not compile
+  - py-numcodecs +msgpack
+  - py-numpy
+  - py-nvidia-dali@1.36.0-cuda120
+  - py-nvidia-ml-py3
+  - py-nvtx
   - py-oauthlib +rsa +signals +signedtoken
   - py-onnx
   - py-opt-einsum
@@ -93,6 +99,7 @@ ml-base-env:
   - py-pandocfilters
   - py-parso
   - py-partd
+  - py-pathspec
   - py-pexpect
   - py-pillow +freetype +jpeg2000 +lcms +tiff +webp
   - py-platformdirs
@@ -124,7 +131,7 @@ ml-base-env:
   - py-python-dateutil
   - py-python-hostlist
   #- py-triton@main%clang
-  #- py-triton%clang
+  #- py-triton%clang -> does not compile
   - py-pytz
   - py-pyyaml
   - py-pyzmq
@@ -137,6 +144,8 @@ ml-base-env:
   - py-scikit-learn
   - py-scipy
   - py-send2trash
+  #- sentencepiece%gcc ~with-TCMalloc
+  #- py-sentencepiece@0.1.99%gcc
   - py-six
   - py-sortedcontainers
   - py-soundfile
@@ -153,12 +162,21 @@ ml-base-env:
   #- py-thinc -> murmurhash does not compile
   - py-threadpoolctl
   - py-tinycss2
+  - py-tokenizers
   - py-tomli
   - py-toolz
+  - py-torch@2.3.1 +distributed +fbgemm ~mkldnn +qnnpack +numa +cudnn +magma +nccl ~gloo +mpi ~onnx_ml +xnnpack +tensorpipe ~caffe2 +kineto +valgrind +custom-protobuf 
+  - py-torchvision +ffmpeg +nvjpeg +video_codec
+  - py-torchaudio
+  - py-torchmetrics
+  ##- py-torch-nvidia-apex@master%gcc
+  ##- py-torch-nvidia-apex@master%gcc +fast_layer_norm +dist_adam
   - py-tornado
   - py-tqdm +notebook
   - py-traitlets
+  - py-transformer-engine@1.6 +userbuffers
   #- py-transformer-engine +userbuffers -> does not compile (yet), x86 intrinsics
+  - py-transformers
   - treelite +python
   - py-typer
   - py-types-dataclasses
