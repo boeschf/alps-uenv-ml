@@ -204,8 +204,8 @@ ml-base-env:
   - py-scikit-learn
   - py-scipy
   - py-send2trash
-  #- sentencepiece%gcc ~with-TCMalloc
-  #- py-sentencepiece@0.1.99%gcc
+  - sentencepiece ~with-TCMalloc
+  - py-sentencepiece@0.1.99
   - py-six
   - py-sortedcontainers
   - py-soundfile
@@ -229,7 +229,7 @@ ml-base-env:
   - py-torchvision +ffmpeg +nvjpeg +video_codec
   - py-torchaudio
   - py-torchmetrics
-  ##- py-torch-nvidia-apex@master%gcc
+  - py-torch-nvidia-apex@master%gcc
   ##- py-torch-nvidia-apex@master%gcc +fast_layer_norm +dist_adam
   - py-tornado
   - py-tqdm +notebook
