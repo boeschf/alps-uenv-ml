@@ -57,7 +57,9 @@ install_pp() {(
 
 install_pp -u "https://github.com/NVIDIA/apex.git" -t "@master" \
     -e "TORCH_CUDA_ARCH_LIST=9.0 CPLUS_INCLUDE_PATH=${pybind11_loc}/include LD_LIBRARY_PATH=${pybind11_loc}/lib" \
-    -c "--config-settings=compile-args=-j255 --config-settings=--global-option=\"--cpp_ext\" --config-settings=--global-option=\"--cuda_ext\" --config-settings=--global-option=\"--distributed_adam\" --config-settings=--global-option=\"--fast_layer_norm\""
+    -c "--global-option=\"--cpp_ext\" --global-option=\"--cuda_ext\" --global-option=\"--distributed_adam\" --global-option=\"--fast_layer_norm\""
+
+    #-c "--config-settings=compile-args=-j255 --config-settings=--global-option=\"--cpp_ext\" --config-settings=--global-option=\"--cuda_ext\" --config-settings=--global-option=\"--distributed_adam\" --config-settings=--global-option=\"--fast_layer_norm\""
 
 #install_pp -u "https://github.com/NVIDIA/TransformerEngine.git" -t "@56e0b351d0b7db6e622d3aa3eac6c6a1bf1ce4ab" \
 #    -e "NVTE_FRAMEWORK=pytorch NVTE_WITH_USERBUFFERS=1 MPI_HOME=${mpi_loc}"

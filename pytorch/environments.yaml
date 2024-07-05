@@ -2,8 +2,6 @@ ml-base-env:
   compiler:
       - toolchain: gcc
         spec: gcc@12
-      - toolchain: llvm
-        spec: llvm@17
   mpi:
       spec: cray-mpich@8.1.29
       gpu: cuda
