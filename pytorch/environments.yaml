@@ -34,18 +34,79 @@ ml-base-env:
   #- py-setuptools-scm%gcc +toml
   #- py-setuptools-rust%gcc
   #- py-wheel%gcc
+  - py-absl-py
   - py-accelerate
+  - py-aiohttp
+  - py-aiosignal
+  - py-argon2-cffi
   - py-arrow
+  - py-asciitree
+  - py-asttokens
+  - py-astunparse
+  - py-async-timeout
+  - py-attrs
+  - py-audioread
+  - py-beautifulsoup4
+  - py-bleach
+  - py-blis
   #- py-bokeh@3.4.2
-  #- py-dask@2023.4.1
-  - py-datasets
+  - py-cachetools
+  - py-catalogue
+  - py-certifi
+  - py-cffi
+  - py-click
+  - py-cloudpickle
+  #- py-cmake
+  - py-comm
+  - py-confection
+  - py-contourpy
+  #- py-cudf
+  #- py-cuml
+  #- py-cupy +all
+  - py-cycler
+  - py-cymem
   - py-deepspeed
+  #- py-dask@2023.4.1
+  #- py-dask-ml
+  #- py-dask-mpi
+  - py-datasets
+  - py-debugpy
+  - py-decorator
+  - py-defusedxml
   #- py-distributed@2023.4.1
+  - py-dm-tree
+  - py-einops
+  - py-entrypoints
+  - py-exceptiongroup
+  - py-execnet
+  - py-executing
+  - py-expecttest
+  - py-fasteners
+  - py-fastjsonschema
+  - py-fastrlock
   - py-einops
   - py-hatchling
   - py-huggingface-hub +cli
+  - py-filelock
   - py-flash-attn
+  - py-fonttools
   - py-frozenlist@1.3.1
+  - py-fsspec
+  - py-gast
+  - py-google-auth
+  - py-google-auth-oauthlib
+  - py-grpcio
+  - py-hypothesis +django +numpy +pandas
+  - py-idna
+  - py-igraph +matplotlib
+  - py-importlib-metadata
+  - py-iniconfig
+  - py-ipykernel
+  - py-ipython
+  - py-ipython-genutils
+  - py-jedi
+  - py-jinja2
+  - py-joblib
   - py-json5
   - py-jsonschema
   - py-jupyter-client
@@ -130,6 +191,7 @@ ml-base-env:
   - py-pytest-xdist
   - py-python-dateutil
   - py-python-hostlist
+  #- py-triton@2.1.1-dev
   #- py-triton@main%clang
   #- py-triton%clang -> does not compile
   - py-pytz

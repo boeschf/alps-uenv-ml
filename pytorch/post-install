@@ -1,8 +1,22 @@
 #! /bin/bash
 
 mpi_loc=$(spack -C {{ env.config }} location -i cray-mpich)
+pybind11_loc=$(spack -C {{ env.config }} location -i py-pybind11)
+py_venv_loc=$(spack -C {{ env.config }} location -i python-venv)
+gcc_loc=$(spack -C {{ env.config }} location -i gcc@12%gcc@12)
+
+echo "gcc_loc = ${gcc_loc}"
+#${py_venv_loc}/bin/python3 -m pip freeze
 
 . {{ env.mount }}/env/._default/*/activate.sh
+
+triton_home={{ env.mount }}/meta/extra/triton_home
+mkdir -p ${triton_home}
+
+echo "$(which g++)"
+
+#pp_path=$(python3 -c 'import sysconfig; print(sysconfig.get_paths()["purelib"])')
+#echo "pp_path = ${pp_path}"
 
 install_pp() {(
     local OPTIND=1
@@ -26,8 +40,8 @@ install_pp() {(
     echo ""
     echo "installing python package from ${git_url}"
 
-    export CXX=g++
-    export CC=gcc
+    export CXX=`which g++`
+    export CC=`which gcc`
     export MAX_JOBS=250
     for env_assignment in "${extra_envs[@]}"; do
         export ${env_assignment}
@@ -41,9 +55,15 @@ install_pp() {(
     echo ""
 )}
 
+install_pp -u "https://github.com/NVIDIA/apex.git" -t "@master" \
+    -e "TORCH_CUDA_ARCH_LIST=9.0 CPLUS_INCLUDE_PATH=${pybind11_loc}/include LD_LIBRARY_PATH=${pybind11_loc}/lib" \
+    -c "--config-settings=compile-args=-j255 --config-settings=--global-option=\"--cpp_ext\" --config-settings=--global-option=\"--cuda_ext\" --config-settings=--global-option=\"--distributed_adam\" --config-settings=--global-option=\"--fast_layer_norm\""
+
 #install_pp -u "https://github.com/NVIDIA/TransformerEngine.git" -t "@56e0b351d0b7db6e622d3aa3eac6c6a1bf1ce4ab" \
 #    -e "NVTE_FRAMEWORK=pytorch NVTE_WITH_USERBUFFERS=1 MPI_HOME=${mpi_loc}"
 
 install_pp -u "https://github.com/openai/triton.git" -t "@989adb9a29496c22a36ef82ca69cad5dad536b9c#subdirectory=python" \
-    -e "TRITON_BUILD_WITH_CLANG_LLD=true"
+    -e "TRITON_HOME=${triton_home}"
+
+#    -e "TRITON_BUILD_WITH_CLANG_LLD=true"
 
