@@ -37,3 +37,12 @@ export TORCH_CUDA_ARCH_LIST=9.0
         git+https://github.com/openai/triton.git@989adb9a29496c22a36ef82ca69cad5dad536b9c#subdirectory=python
 )
 
+(
+    python -m pip -vvv --no-input --no-cache-dir --disable-pip-version-check install --no-build-isolation --no-warn-script-location --no-index \
+        git+https://github.com/mlcommons/logging.git@2.1.0-rc1
+)
+
+(
+    python -m pip -vvv --no-input --no-cache-dir --disable-pip-version-check install --no-build-isolation --no-warn-script-location --no-index \
+        git+https://github.com/NVIDIA/mlperf-common.git
+)
