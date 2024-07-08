@@ -94,6 +94,7 @@ ml-base-env:
   - py-google-auth
   - py-google-auth-oauthlib
   - py-grpcio
+  - py-h5py
   - py-hypothesis +django +numpy +pandas
   - py-idna
   - py-igraph +matplotlib
@@ -229,7 +230,7 @@ ml-base-env:
   - py-torchvision +ffmpeg +nvjpeg +video_codec
   - py-torchaudio
   - py-torchmetrics
-  - py-torch-nvidia-apex@master%gcc
+  #- py-torch-nvidia-apex@master%gcc
   ##- py-torch-nvidia-apex@master%gcc +fast_layer_norm +dist_adam
   - py-tornado
   - py-tqdm +notebook
