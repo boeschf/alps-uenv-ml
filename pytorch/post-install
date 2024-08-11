@@ -14,20 +14,6 @@ export MAX_JOBS=250
 export TORCH_CUDA_ARCH_LIST=9.0
 
 (
-    # install py-torch-nvidia-apex manually
-
-    export CPLUS_INCLUDE_PATH=${pybind11_loc}/include
-    export LD_LIBRARY_PATH=${pybind11_loc}/lib
-
-    python -m pip -vvv --no-input --no-cache-dir --disable-pip-version-check install --no-build-isolation --no-warn-script-location --no-index \
-        --config-settings="--build-option=--cpp_ext" \
-        --config-settings="--build-option=--cuda_ext" \
-        git+https://github.com/NVIDIA/apex.git@master
-)
-
-(
-    # install py-triton manually
-
     triton_home={{ env.mount }}/meta/extra/triton_home
     mkdir -p ${triton_home}
 
@@ -39,10 +25,24 @@ export TORCH_CUDA_ARCH_LIST=9.0
 
 (
     python -m pip -vvv --no-input --no-cache-dir --disable-pip-version-check install --no-build-isolation --no-warn-script-location --no-index \
-        git+https://github.com/mlcommons/logging.git@2.1.0-rc1
+        git+https://github.com/pratiman-91/colormaps.git
 )
 
 (
     python -m pip -vvv --no-input --no-cache-dir --disable-pip-version-check install --no-build-isolation --no-warn-script-location --no-index \
-        git+https://github.com/NVIDIA/mlperf-common.git
+        git+https://github.com/saforem2/ambivalent.git
 )
+
+(
+    python -m pip -vvv --no-input --no-cache-dir --disable-pip-version-check install --no-build-isolation --no-warn-script-location ninja
+)
+
+#(
+#    python -m pip -vvv --no-input --no-cache-dir --disable-pip-version-check install --no-build-isolation --no-warn-script-location --no-index \
+#        git+https://github.com/mlcommons/logging.git@2.1.0-rc1
+#)
+#
+#(
+#    python -m pip -vvv --no-input --no-cache-dir --disable-pip-version-check install --no-build-isolation --no-warn-script-location --no-index \
+#        git+https://github.com/NVIDIA/mlperf-common.git
+#)

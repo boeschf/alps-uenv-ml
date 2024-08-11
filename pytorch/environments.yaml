@@ -14,7 +14,7 @@ ml-base-env:
   - cuda@12.3
   - fftw
   - fmt
-  - hdf5 +direct-vfd
+  - hdf5 +direct-vfd +subfiling +hl +szip +threadsafe +mpi
   - nccl@2.21.5-1
   - ninja
   - gperftools
@@ -22,8 +22,10 @@ ml-base-env:
   #- armpl-gcc threads=openmp
   - cudnn
   - cutensor
+  - hydra
   - swig
   - libaio
+  - faiss +python
   - python
   - python-venv
   - py-pip
@@ -47,7 +49,8 @@ ml-base-env:
   - py-beautifulsoup4
   - py-bleach
   - py-blis
-  #- py-bokeh@3.4.2
+  - py-bokeh
+  - py-boto3
   - py-cachetools
   - py-catalogue
   - py-certifi
@@ -64,14 +67,14 @@ ml-base-env:
   - py-cycler
   - py-cymem
   - py-deepspeed
-  #- py-dask@2023.4.1
-  #- py-dask-ml
-  #- py-dask-mpi
+  - py-dask@2023.4.1
+  - py-dask-ml
+  - py-dask-mpi
   - py-datasets
   - py-debugpy
   - py-decorator
   - py-defusedxml
-  #- py-distributed@2023.4.1
+  - py-distributed
   - py-dm-tree
   - py-einops
   - py-entrypoints
@@ -85,12 +88,16 @@ ml-base-env:
   - py-einops
   - py-hatchling
   - py-huggingface-hub +cli
+  - py-hydra-core
   - py-filelock
   - py-flash-attn
+  - py-flask-restful
   - py-fonttools
   - py-frozenlist@1.3.1
   - py-fsspec
+  - py-ftfy
   - py-gast
+  - py-gdown
   - py-google-auth
   - py-google-auth-oauthlib
   - py-grpcio
@@ -99,11 +106,13 @@ ml-base-env:
   - py-idna
   - py-igraph +matplotlib
   - py-importlib-metadata
+  - py-inflect
   - py-iniconfig
   - py-ipykernel
   - py-ipython
   - py-ipython-genutils
   - py-jedi
+  #- py-jax
   - py-jinja2
   - py-joblib
   - py-json5
@@ -117,40 +126,44 @@ ml-base-env:
   - py-kiwisolver
   - py-langcodes
   - py-lazy-loader
-  #- py-librosa -> depends on py-numba -> py-llvmlite -> llvm14
+  - py-librosa
   - py-lightning
   - py-lightning-utilities
-  #- py-llvmlite -> does not compile since it relies on llvm14 which does not compile
+  - py-llvmlite ^llvm ~cuda
   - py-locket
   - py-looseversion
   - py-markdown
   - py-markdown-it-py
+  - py-markdown2
   - py-markupsafe
   - py-matplotlib ~animation ~latex ~movies
   - py-matplotlib-inline
   - py-mdit-py-plugins
   - py-mdurl
   - py-mistune
+  - py-ml-dtypes
   - py-mock
+  - py-mpi4py
   - py-mpmath
   - py-msgpack
   - py-multidict
-  #- py-murmurhash -> does not build
+  #- py-murmurhash -> does not build and py-wheel conflict
   - py-nbclient
   - py-nbconvert
   - py-nbformat
   - py-nest-asyncio
   - py-networkx
-  #- py-ninja (can't concretize to single version)
+  #- py-ninja
   - py-nltk
   - py-notebook
-  #- py-numba -> depends on py-llvmlite which does not compile
+  - py-numba
   - py-numcodecs +msgpack
   - py-numpy
   - py-nvidia-dali@1.36.0-cuda120
   - py-nvidia-ml-py3
   - py-nvtx
   - py-oauthlib +rsa +signals +signedtoken
+  - py-omegaconf
   - py-onnx
   - py-opt-einsum
   - py-optree
@@ -163,6 +176,7 @@ ml-base-env:
   - py-pexpect
   - py-pillow +freetype +jpeg2000 +lcms +tiff +webp
   - py-platformdirs
+  - py-plotext
   - py-pluggy
   - py-ply
   - py-pooch
@@ -184,6 +198,7 @@ ml-base-env:
   - py-pycparser
   - py-pydantic
   - py-pygments
+  - py-pyinstrument
   - py-pynvml
   - py-pyparsing
   - py-pytest
@@ -196,17 +211,22 @@ ml-base-env:
   - py-pytz
   - py-pyyaml
   - py-pyzmq
+  - py-rapidfuzz
   - py-regex
   - py-requests +socks
   - py-requests-oauthlib
   - py-rich
   #- py-rmm -> librmm does not compile
   - py-rsa
+  - py-sacrebleu
+  - py-sacremoses
   - py-scikit-learn
   - py-scipy
+  - py-seaborn
   - py-send2trash
   - sentencepiece ~with-TCMalloc
   - py-sentencepiece@0.1.99
+  - py-sh
   - py-six
   - py-sortedcontainers
   - py-soundfile
@@ -217,8 +237,10 @@ ml-base-env:
   - py-sympy
   - py-tabulate
   - py-tblib
+  - py-tensorboard
   - py-tensorstore
   - py-terminado
+  - py-text-unidecode
   - py-texttable
   #- py-thinc -> murmurhash does not compile
   - py-threadpoolctl
@@ -230,27 +252,27 @@ ml-base-env:
   - py-torchvision +ffmpeg +nvjpeg +video_codec
   - py-torchaudio
   - py-torchmetrics
-  #- py-torch-nvidia-apex@master%gcc
-  ##- py-torch-nvidia-apex@master%gcc +fast_layer_norm +dist_adam
+  - py-torch-nvidia-apex@master
   - py-tornado
   - py-tqdm +notebook
   - py-traitlets
-  - py-transformer-engine@1.6.1 +userbuffers
-  #- py-transformer-engine +userbuffers -> does not compile (yet), x86 intrinsics
-  - py-transformers
+  - py-transformer-engine@1.8 +userbuffers
+  - py-transformers@4.40.2
   - treelite +python
   - py-typer
   - py-types-dataclasses
   - py-typing-extensions
   - py-tzdata
   - py-urllib3 +socks +brotli
+  - py-wandb
   - py-wasabi
   - py-wcwidth
   - py-webencodings
   - py-werkzeug
-  #- py-xarray +parallel +io -> py-dask -> py-bokeh (does not compile)
+  - py-wget
+  - py-xarray +parallel +io
   #- py-xgboost +dask +pandas +scikit-learn
-  #- xgboost +nccl -> does not compile
+  - xgboost +nccl +openmp
   - py-yarl
   - py-zarr
   - py-zict
@@ -262,4 +284,6 @@ ml-base-env:
   views:
     default:
       link: all
-
+      uenv:
+        prefix_paths:
+          LD_LIBRARY_PATH: [lib, lib64]

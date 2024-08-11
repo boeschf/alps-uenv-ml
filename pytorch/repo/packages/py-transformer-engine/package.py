@@ -19,6 +19,7 @@ class PyTransformerEngine(PythonPackage):
 
     license("Apache-2.0")
 
+    version("1.8", tag="v1.8", submodules=True)
     version("1.6.1", commit="08e5e4b1be2e3eea40d4dabda0b62cd4d60d6fab", submodules=True)
     version("1.6", tag="v1.6", submodules=True) 
     version("1.4", tag="v1.4", submodules=True)
@@ -27,7 +28,9 @@ class PyTransformerEngine(PythonPackage):
     variant("userbuffers", default=True, description="Enable userbuffers, this option needs MPI.")
 
     depends_on("py-setuptools", type="build")
-    depends_on("cmake@3.18:")
+    depends_on("cmake@3.18:", type="build")
+    depends_on("ninja", type="build")
+    depends_on("py-pybind11", type=("build", "link", "run"))
     depends_on("py-pydantic")
     depends_on("py-importlib-metadata")
 
