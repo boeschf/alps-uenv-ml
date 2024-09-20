@@ -1,0 +1,20 @@
+name: pytorch
+spack:
+  repo: https://github.com/spack/spack.git
+  #offending commit: https://github.com/spack/spack/pull/46071
+  #commit: c283fce487d75ce1f8b78cb30239630455501391
+  
+  commit: 814f4f20c0dda13cc5668bb26ef9d09e876a5d75
+  #worksing commits
+  #commit: 199cbce5efed120744f3b36e7a3eb9ed2eddeaa2
+  #commit: ec85bbe3f72ba24a4f4ebe21de436da1d610ff87
+  #commit: b1af32cb601eb3844381cc500ba8cea3a820941a
+  #commit: 02f329a8af859a7246298378c6ea5871674575a4
+  #commit: e5f53a62509452227bc84cdd2b96bb8d89d684b2
+  #commit: 03a7da1e44a3e1f3552623af86ff5233372677fd
+  #commit: 7900d0b3db56acc4ebaeb1b91f7e00b434d855d4
+  #commit: 7a83cdbcc7d6410936a9d09f0f008dbbb67e5fb1
+modules: false
+store: /user-environment
+description: Toolchain for Machine Learning, PyTorch and other development tools
+

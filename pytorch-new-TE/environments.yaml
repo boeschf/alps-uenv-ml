@@ -1,0 +1,294 @@
+ml-base-env:
+  compiler:
+      - toolchain: gcc
+        spec: gcc@12
+  mpi:
+      spec: cray-mpich@8.1.30
+      gpu: cuda
+  unify: true
+  specs:
+  - cray-mpich
+  - aws-ofi-nccl@master
+  - xpmem
+  - cmake
+  - cuda
+  - fftw
+  - fmt
+  - hdf5 +direct-vfd
+  - nccl
+  - ninja
+  - gperftools
+  - openblas threads=openmp
+  #- armpl-gcc threads=openmp
+  - cudnn
+  - cutensor
+  - hydra
+  - swig
+  - libaio
+  - faiss +python
+  - python
+  - python-venv
+  - py-pip
+  - py-cython
+  #- py-setuptools%gcc
+  #- py-setuptools-scm%gcc +toml
+  #- py-setuptools-rust%gcc
+  #- py-wheel%gcc
+  - py-absl-py
+  - py-accelerate
+  - py-aiohttp
+  - py-aiosignal
+  - py-argon2-cffi
+  - py-arrow
+  - py-asciitree
+  - py-asttokens
+  - py-astunparse
+  - py-async-timeout
+  - py-attrs
+  - py-audioread
+  - py-beautifulsoup4
+  - py-bleach
+  - py-blis
+  - py-bokeh
+  - py-boto3
+  - py-cachetools
+  - py-catalogue
+  - py-certifi
+  - py-cffi
+  - py-click
+  - py-cloudpickle
+  #- py-cmake
+  - py-comm
+  - py-confection
+  - py-contourpy
+  #- py-cudf
+  #- py-cuml
+  #- py-cupy +all
+  - py-cycler
+  - py-cymem
+  - py-deepspeed
+  - py-dask
+  - py-dask-ml
+  - py-dask-mpi
+  - py-datasets
+  - py-debugpy
+  - py-decorator
+  - py-defusedxml
+  - py-distributed
+  - py-dm-tree
+  - py-docstring-parser
+  - py-einops
+  - py-entrypoints
+  - py-exceptiongroup
+  - py-execnet
+  - py-executing
+  - py-expecttest
+  - py-fasteners
+  - py-fastjsonschema
+  - py-fastrlock
+  - py-einops
+  - py-hatchling
+  - py-huggingface-hub +cli
+  - py-hydra-core
+  - py-filelock
+  - py-flash-attn
+  - py-flask-restful
+  - py-fonttools
+  - py-frozenlist
+  - py-fsspec
+  - py-ftfy
+  - py-gast
+  - py-gdown
+  - py-google-auth
+  - py-google-auth-oauthlib
+  - py-grpcio
+  - py-h5py
+  - py-hypothesis +django +numpy +pandas
+  - py-idna
+  - py-igraph +matplotlib
+  - py-importlib-metadata
+  - py-inflect
+  - py-iniconfig
+  - py-ipykernel
+  - py-ipython
+  - py-ipython-genutils
+  - py-jedi
+  #- py-jax
+  - py-jinja2
+  - py-joblib
+  - py-json5
+  - py-jsonargparse +signatures
+  - py-jsonschema
+  - py-jupyter-client
+  - py-jupyter-core
+  - py-jupyterlab
+  - py-jupyterlab-server
+  - py-jupyterlab-pygments
+  - py-jupytext
+  - py-kiwisolver
+  - py-langcodes
+  - py-lazy-loader
+  - py-librosa
+  - py-lightning
+  - py-lightning-utilities
+  - py-llvmlite ^llvm ~cuda
+  - py-locket
+  - py-looseversion
+  - py-markdown
+  - py-markdown-it-py
+  - py-markdown2
+  - py-markupsafe
+  - py-matplotlib ~animation ~latex ~movies
+  - py-matplotlib-inline
+  - py-mdit-py-plugins
+  - py-mdurl
+  - py-mistune
+  - py-ml-dtypes
+  - py-mock
+  - py-mpi4py
+  - py-mpmath
+  - py-msgpack
+  - py-multidict
+  #- py-murmurhash -> does not build
+  - py-nbclient
+  - py-nbconvert
+  - py-nbformat
+  - py-nest-asyncio
+  - py-networkx
+  #- py-ninja (can't concretize to single version)
+  - py-nltk
+  - py-notebook
+  - py-numba
+  - py-numcodecs +msgpack
+  - py-numpy
+  - py-nvidia-dali@1.36.0-cuda120
+  - py-nvidia-ml-py3
+  - py-nvtx
+  - py-oauthlib +rsa +signals +signedtoken
+  - py-omegaconf
+  - py-onnx
+  - py-opt-einsum
+  - py-optree
+  - py-packaging
+  - py-pandas
+  - py-pandocfilters
+  - py-parso
+  - py-partd
+  - py-pathspec
+  - py-pexpect
+  - py-pillow +freetype +jpeg2000 +lcms +tiff +webp
+  - py-platformdirs
+  - py-plotext
+  - py-pluggy
+  - py-ply
+  - py-pooch
+  #- py-preshed -> murmurhash does not compile
+  - py-prettytable
+  - py-prometheus-client
+  - py-prompt-toolkit
+  - py-protobuf
+  - protobuf
+  - py-psutil
+  - py-ptyprocess
+  - py-pure-eval
+  - py-pyarrow +dataset ~orc +parquet
+  - arrow +brotli +compute ~gandiva +glog +hdfs +lz4 ~orc +parquet +python +snappy +zlib +zstd
+  - py-pyasn1
+  - py-pyasn1-modules
+  - py-pybind11
+  - py-pycocotools
+  - py-pycparser
+  - py-pydantic
+  - py-pygments
+  - py-pyinstrument
+  - py-pynvml
+  - py-pyparsing
+  - py-pytest
+  - py-pytest-xdist
+  - py-python-dateutil
+  - py-python-hostlist
+  #- py-triton@2.1.1-dev
+  #- py-triton@main%clang
+  #- py-triton%clang -> does not compile
+  #- py-triton@main
+  - py-pytz
+  - py-pyyaml
+  - py-pyzmq
+  - py-rapidfuzz
+  - py-regex
+  - py-requests +socks
+  - py-requests-oauthlib
+  - py-rich
+  #- py-rmm -> librmm does not compile
+  - py-rsa
+  - py-sacrebleu
+  - py-sacremoses
+  - py-scikit-learn
+  - py-scipy
+  - py-seaborn
+  - py-send2trash
+  - sentencepiece ~with-TCMalloc
+  - py-sentencepiece@0.1.99 # -> higher version fails to install (legacy-install-failure)
+  - py-sh
+  - py-six
+  - py-sortedcontainers
+  - py-soundfile
+  - py-soupsieve
+  - py-spacy-loggers
+  #- py-srsly -> does not compile
+  - py-stack-data
+  - py-sympy
+  - py-tabulate
+  - py-tblib
+  - py-tensorboard
+  - py-tensorstore
+  - py-terminado
+  - py-text-unidecode
+  - py-texttable
+  #- py-thinc -> murmurhash does not compile
+  - py-threadpoolctl
+  - py-tinycss2
+  - py-tokenizers
+  - py-tomli
+  - py-toolz
+  - py-pytorch-lightning
+  - py-torch@2.4.0 +custom-protobuf +distributed +fbgemm ~mkldnn +numpy +openmp +qnnpack ~rocm +numa +cudnn +magma +nccl ~gloo +mpi +onnx_ml +xnnpack +tensorpipe +caffe2 +kineto +valgrind  
+  - py-torchvision +ffmpeg +nvjpeg +video_codec
+  - py-torchaudio
+  - py-torchmetrics
+  - py-torch-nvidia-apex@master
+  - py-tornado
+  - py-tqdm +notebook
+  - py-traitlets
+  - py-transformer-engine +userbuffers
+  - py-transformers
+  - treelite +python
+  - py-typer
+  - py-typeshed-client
+  - py-types-dataclasses
+  - py-typing-extensions
+  - py-tzdata
+  - py-urllib3 +socks +brotli
+  - py-wandb
+  - py-wasabi
+  - py-wcwidth
+  - py-webencodings
+  - py-werkzeug
+  - py-wget
+  - py-xarray +parallel +io
+  #- py-xgboost +dask +pandas +scikit-learn -> new versions don't build, build backend has changed
+  - xgboost +nccl +openmp
+  - py-yarl
+  - py-zarr
+  - py-zict
+  - py-zipp
+  variants:
+  - +mpi
+  - +cuda
+  - cuda_arch=90
+  views:
+    default:
+      link: all
+      uenv:
+        prefix_paths:
+          LD_LIBRARY_PATH: [lib, lib64]
